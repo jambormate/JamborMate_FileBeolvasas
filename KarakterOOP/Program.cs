@@ -16,8 +16,12 @@ namespace KarakterOOP
             }
 			AtlagosSzint(karakterek);
 			LegmagasabbEletero(karakterek);
+			ErossegRendezes(karakterek);
+            Vane50(karakterek);
+            Stats(karakterek);
 
-		}
+
+        }
 
 		static void Beolvasas(string filenev, List<Karakter> karakterek)
 		{
@@ -44,7 +48,7 @@ namespace KarakterOOP
 					maxhp = item;
 				}
 			}
-            Console.WriteLine($"{maxhp.Nev} - {maxhp.Szint} / {maxhp.Ero}");
+            Console.WriteLine($"A legtöbb életerővel rendelkező karakter: {maxhp.Nev} - {maxhp.Szint} / {maxhp.Ero}");
         }
 		
 
@@ -59,5 +63,55 @@ namespace KarakterOOP
             Console.WriteLine($"A karakterek átlagszintje: {Atlag}");
 
         }
-	}
+
+        static void ErossegRendezes(List<Karakter> karakterek)
+        {
+            for (int i = 0; i < karakterek.Count - 1; i++)
+            {
+                for (int j = i + 1; j < karakterek.Count; j++)
+                {
+                    if (karakterek[i].Ero > karakterek[j].Ero)
+                    {
+                        Karakter csere = karakterek[i];
+                        karakterek[i] = karakterek[j];
+                        karakterek[j] = csere;
+                    }
+                }
+            }
+            Console.WriteLine("A karakterek erősségük alapján rendezve: ");
+            foreach (var item in karakterek)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("-----------------");
+        }
+
+		static void Vane50(List<Karakter> karakterek)
+		{
+            bool megvanaz50 = false;
+            for (int i = 0; i < karakterek.Count; i++)
+            {
+                if (karakterek[i].Ero >= 50)
+                {
+                    megvanaz50 = true;
+                }
+                Console.WriteLine(karakterek[i].Nev + " - " + megvanaz50);
+            }
+            Console.WriteLine("-----------------");
+        }
+
+        static void Stats(List<Karakter> karakterek)
+        {
+            int szint = 6;
+
+            for (int i = 0; i < karakterek.Count; i++)
+            {
+                if (karakterek[i].Szint > szint)
+                {
+                    Console.WriteLine(karakterek[i]);
+                }
+            }
+            Console.WriteLine("-----------------");
+        }
+    }
 }
