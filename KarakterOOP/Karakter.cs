@@ -30,5 +30,20 @@ namespace KarakterOOP
 		{
 			return $"{nev} - {szint} / {eletero} / {ero}";
 		}
-	}
+
+		public int Eroszintkombo
+		{
+			get
+			{
+				return ero + szint;
+			}
+		}
+        public int Eleteroerokombo
+        {
+            get
+            {
+                return eletero + ero;
+            }
+        }
+    }
 }
